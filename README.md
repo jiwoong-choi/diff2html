@@ -23,3 +23,12 @@ optional arguments:
 ### Example Output
 
 ![ScreenShot](/screenshots/latest.png)
+
+### Generating diff for files in two directories recursively
+```
+./compare.sh <source directory> <target directory> <extension (optional)> ...
+```
+For example:
+```
+./compare.sh /path/to/dir1 /path/to/dir2 .py .json
+```
