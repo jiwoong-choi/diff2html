@@ -17,8 +17,8 @@ if [ "$#" -ne 0 ]
 then
     for ITEM in $@
     do
-        find $SRC_DIR -type f -name "*$ITEM" | while read x; do echo ${x/$SRC_DIR/""}; done | while read relpath; do (echo "Comparing ${relpath}" && python diff2HtmlCompare.py ${SRC_DIR}${relpath} ${TRG_DIR}${relpath} && mv index.html diff${relpath}.html); done
+        find $SRC_DIR -type f -name "*$ITEM" | while read x; do echo ${x/$SRC_DIR/""}; done | while read relpath; do (echo "Comparing ${relpath}" && python diff2HtmlCompare.py ${SRC_DIR}${relpath} ${TRG_DIR}${relpath} && [ -f index.html ] && mv index.html diff${relpath}.html); done
     done
 else
-    find $SRC_DIR -type f | while read x; do echo ${x/$SRC_DIR/""}; done | while read relpath; do (python diff2HtmlCompare.py ${SRC_DIR}${relpath} ${TRG_DIR}${relpath} && mv index.html diff${relpath}.html); done
+    find $SRC_DIR -type f | while read x; do echo ${x/$SRC_DIR/""}; done | while read relpath; do (python diff2HtmlCompare.py ${SRC_DIR}${relpath} ${TRG_DIR}${relpath} && [ -f index.html ] && mv index.html diff${relpath}.html); done
 fi

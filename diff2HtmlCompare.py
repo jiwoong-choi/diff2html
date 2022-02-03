@@ -24,6 +24,7 @@ import io
 import os
 import sys
 import difflib
+import filecmp
 import argparse
 import pygments
 import webbrowser
@@ -424,6 +425,7 @@ creates an html page which highlights the differences between the two. """
         raise ValueError("Syntax CSS (-c) must be one of %r." % PYGMENTS_STYLES)
 
     outputpath = "index.html"
-    main(args.file1, args.file2, outputpath, args)
-    if args.show:
-        show(outputpath)
+    if not filecmp.cmp(args.file1, args.file2):
+        main(args.file1, args.file2, outputpath, args)
+        if args.show:
+            show(outputpath)
