@@ -11,7 +11,7 @@ shift
 
 mkdir -p diff
 cp -a .deps diff/.deps
-find $SRC_DIR -type d | while read x; do (mkdir -p diff/${x/$SRC_DIR/""} && cp -a .deps diff/${x/$SRC_DIR/""}/.deps); done
+find $SRC_DIR -type d | while read x; do (mkdir -p diff/${x/$SRC_DIR/""} && ln -s ../.deps diff/${x/$SRC_DIR/""}/.deps); done
 
 if [ "$#" -ne 0 ]
 then
